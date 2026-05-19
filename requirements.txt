@@ -1,5 +1,3 @@
 ollama
 python-dotenv
-pandas
-matplotlib
-tiktoken
+ipython

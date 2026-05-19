@@ -1,75 +1,7 @@
 {
   "tools": [
-    {
-      "name": "consultar_historico_paciente",
-      "description": "Consulta histórico clínico simulado do beneficiário, incluindo condições, alergias, medicamentos em uso e últimas consultas.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "paciente_id": {
-            "type": "string",
-            "description": "Identificador simulado do paciente."
-          }
-        },
-        "required": [
-          "paciente_id"
-        ]
-      }
-    },
-    {
-      "name": "verificar_interacoes_medicamentosas",
-      "description": "Verifica possíveis interações simuladas entre medicamentos informados e medicamentos em uso pelo paciente.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "medicamentos_novos": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "paciente_id": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "medicamentos_novos",
-          "paciente_id"
-        ]
-      }
-    },
-    {
-      "name": "agendar_teleconsulta",
-      "description": "Simula o agendamento de uma teleconsulta quando houver necessidade de avaliação médica.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "paciente_id": {
-            "type": "string"
-          },
-          "especialidade": {
-            "type": "string"
-          },
-          "prioridade": {
-            "type": "string",
-            "enum": [
-              "baixa",
-              "media",
-              "alta",
-              "urgente"
-            ]
-          },
-          "motivo": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "paciente_id",
-          "especialidade",
-          "prioridade",
-          "motivo"
-        ]
-      }
-    }
+    "consultar_historico_paciente",
+    "verificar_interacoes_medicamentosas",
+    "agendar_teleconsulta"
   ]
 }

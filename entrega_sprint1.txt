@@ -5,4 +5,4 @@ Pedro Henrique Camacho de Alencar — RM568071
 Igor Mota Marran — RM567823
 
 GitHub:
-COLE_AQUI_O_LINK_DO_REPOSITORIO_PUBLICO
+https://github.com/SEU_USUARIO/blua-diagnostics-sprint1

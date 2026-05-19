@@ -1,25 +1,5 @@
 {
-  "pacientes": {
-    "P001": {
-      "nome": "Paciente Simulado",
-      "idade": 42,
-      "condicoes": [
-        "hipertensão leve",
-        "rinite alérgica"
-      ],
-      "alergias": [
-        "dipirona"
-      ],
-      "medicamentos_em_uso": [
-        "losartana 50mg"
-      ],
-      "ultimas_consultas": [
-        {
-          "data": "2026-04-12",
-          "especialidade": "clínica médica",
-          "motivo": "check-up anual"
-        }
-      ]
-    }
-  }
+  "paciente_id": "PAC001",
+  "idade": 42,
+  "condicao": "hipertensão leve"
 }
