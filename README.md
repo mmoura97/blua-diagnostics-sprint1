@@ -1,3 +1,9 @@
+## Versão corrigida conforme feedback
+
+A versão revisada da Sprint 1 está na branch:
+
+https://github.com/mmoura97/blua-diagnostics-sprint1/tree/sprint1-final
+
 # BluaDiagnostics — Sprint 1
 
 Projeto acadêmico desenvolvido para o Challenge BluaDiagnostics utilizando Prompt Engineering, memória conversacional, function calling simulado e integração com Ollama Cloud.
