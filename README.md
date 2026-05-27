@@ -109,31 +109,46 @@ O modelo escolhido para a PoC foi o **gpt-oss:120b via Ollama Cloud**, por apres
 
 ## 6. Arquitetura proposta
 
-O fluxograma está disponível em:
+O fluxograma completo está disponível em:
 
 ```text
 docs/arquitetura.md
 docs/arquitetura.svg
 ```
 
-Fluxo resumido:
+### Fluxo resumido da arquitetura
 
-```text
-Usuário
- ↓
-Entrada Conversacional
- ↓
-System Prompt Clínico + Memória
- ↓
-Roteamento de Intenção
- ↓
-RAG simulado + Tools
- ↓
-LLM via Ollama Cloud
- ↓
-Guardrails Clínicos
- ↓
-Resposta Segura / Escalada Humana
+```mermaid
+flowchart TD
+    A[Usuário / Beneficiário] --> B[Entrada Conversacional]
+
+    B --> C[System Prompt Clínico]
+    C --> D[Memória Conversacional]
+
+    D --> E[Classificação de Intenção]
+
+    E -->|Check-up| F[Coleta de sintomas]
+    E -->|Histórico| G[Tool consultar_historico_paciente]
+    E -->|Medicamentos| H[Tool verificar_interacoes_medicamentosas]
+    E -->|Agendamento| I[Tool agendar_teleconsulta]
+
+    F --> J[Knowledge Base simulada]
+    G --> K[Contexto enriquecido]
+    H --> K
+    I --> K
+    J --> K
+
+    K --> L[LLM via Ollama Cloud]
+
+    L --> M[Guardrails Clínicos]
+
+    M --> N{Existe red flag?}
+
+    N -->|Sim| O[Escalada para atendimento humano]
+    N -->|Não| P[Resposta segura]
+
+    O --> Q[Saída final]
+    P --> Q
 ```
 
 ---
@@ -258,46 +273,136 @@ OLLAMA_API_KEY
 
 ## 12. Como executar localmente no VSCode
 
-1. Criar ambiente virtual:
+# Execução no Windows
 
-```bash
+## 1. Clonar o repositório
+
+```powershell
+git clone https://github.com/mmoura97/blua-diagnostics-sprint1.git
+cd blua-diagnostics-sprint1
+```
+
+## 2. Criar ambiente virtual
+
+```powershell
 python -m venv venv
 ```
 
-2. Ativar ambiente no Windows:
+## 3. Ativar ambiente virtual
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-3. Instalar dependências:
+## 4. Instalar dependências
 
-```bash
+```powershell
 pip install -r requirements.txt
 ```
 
-4. Criar arquivo `.env`:
+## 5. Configurar variável de ambiente
+
+Criar arquivo `.env`:
 
 ```env
 OLLAMA_API_KEY=sua_chave_ollama
 ```
 
-5. Abrir o notebook no VSCode e executar com a extensão Jupyter.
+Ou utilizar Google Colab Secrets:
+
+```text
+OLLAMA_API_KEY
+```
+
+## 6. Executar notebook
+
+Abrir:
+
+```text
+notebooks/sprint1_poc.ipynb
+```
+
+com:
+- VSCode + extensão Jupyter;
+- Jupyter Notebook;
+- ou Google Colab.
 
 ---
 
-## 13. Segurança
+# Execução no Linux/macOS
 
-Nenhuma chave de API deve ser enviada ao GitHub. Utilize `.env` localmente ou Secrets no Google Colab.
+## 1. Clonar o repositório
 
-O arquivo `.gitignore` impede o envio de:
+```bash
+git clone https://github.com/mmoura97/blua-diagnostics-sprint1.git
+cd blua-diagnostics-sprint1
+```
 
-- `.env`
-- `venv/`
-- `__pycache__/`
-- checkpoints de notebook
+## 2. Criar ambiente virtual
+
+```bash
+python3 -m venv venv
+```
+
+## 3. Ativar ambiente virtual
+
+```bash
+source venv/bin/activate
+```
+
+## 4. Instalar dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+## 5. Configurar variável de ambiente
+
+Criar arquivo `.env`:
+
+```env
+OLLAMA_API_KEY=sua_chave_ollama
+```
+
+Ou configurar no Google Colab:
+
+```text
+Secrets → OLLAMA_API_KEY
+```
+
+## 6. Executar notebook
+
+Abrir:
+
+```text
+notebooks/sprint1_poc.ipynb
+```
+
+com:
+- VSCode;
+- Jupyter Notebook;
+- ou Google Colab.
 
 ---
+
+# Segurança
+
+- Nenhuma API key deve ser enviada ao GitHub.
+- O projeto utiliza `.gitignore` para impedir upload de ambientes virtuais e credenciais.
+- A PoC foi validada em Google Colab e VSCode.
+
+---
+
+## 13. Conclusão
+
+A Sprint 1 validou a viabilidade técnica do BluaDiagnostics utilizando IA conversacional com:
+
+- system prompt clínico;
+- memória conversacional;
+- function calling simulado;
+- tools mockadas;
+- guardrails clínicos;
+- arquitetura preparada para RAG.
 
 ## 14. Observação médica
 
