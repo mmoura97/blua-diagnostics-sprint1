@@ -1,7 +1,71 @@
 {
   "tools": [
-    "consultar_historico_paciente",
-    "verificar_interacoes_medicamentosas",
-    "agendar_teleconsulta"
+    {
+      "name": "consultar_historico_paciente",
+      "description": "Consulta histórico clínico simulado do beneficiário.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "paciente_id": {
+            "type": "string",
+            "description": "Identificador simulado do paciente."
+          }
+        },
+        "required": [
+          "paciente_id"
+        ]
+      },
+      "mock_behavior": "Retorna idade, condições conhecidas, alergias, medicamentos de uso contínuo, sinais vitais recentes e última teleconsulta."
+    },
+    {
+      "name": "verificar_interacoes_medicamentosas",
+      "description": "Verifica possíveis interações medicamentosas em base simulada.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "medicamentos": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Lista de medicamentos informados ou presentes no histórico."
+          }
+        },
+        "required": [
+          "medicamentos"
+        ]
+      },
+      "mock_behavior": "Retorna nível de risco baixo, moderado ou alto e mensagem de orientação para validação médica."
+    },
+    {
+      "name": "agendar_teleconsulta",
+      "description": "Simula agendamento de teleconsulta.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "paciente_id": {
+            "type": "string"
+          },
+          "especialidade": {
+            "type": "string"
+          },
+          "prioridade": {
+            "type": "string",
+            "enum": [
+              "baixa",
+              "moderada",
+              "alta",
+              "emergencial"
+            ]
+          }
+        },
+        "required": [
+          "paciente_id",
+          "especialidade",
+          "prioridade"
+        ]
+      },
+      "mock_behavior": "Retorna status do agendamento, especialidade, prioridade e horário simulado."
+    }
   ]
 }
